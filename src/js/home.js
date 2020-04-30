@@ -36,3 +36,16 @@ Promise.all([
   
 // })
 
+// Fetch retorna una promesa, y response.json() tambien devuelve una promesa
+fetch('https://randomuser.me/api/')
+  .then(function(response){
+    console.log(response)
+    return response.json()
+  })
+  // Al resolverse anterior promesa, en JSON vienen los datos del user
+  .then(function(user){
+    console.log('user', user.results[0].name.first)
+  })
+  .catch(function(){
+    console.log('error')
+  })
