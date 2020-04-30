@@ -48,4 +48,37 @@ fetch('https://randomuser.me/api/')
   })
   .catch(function(){
     console.log('error')
-  })
+    // punto y coma al final para terminar promesa fetch y continue con la siguiente promesa
+  });
+
+// Funcion Asincrona
+// Peticiones fetch a la API de películas.
+// Sin funciones asíncronas para cada fetch tendríamos que usar los métodos then y catch
+// con async/await solo se escribe la palabra await antes de cada promesa.
+// Se envuelve la funcion para que se autoejecute load
+(async function load(){
+
+  // action
+  // terror
+  // animation
+  async function getData(url){
+    const response = await fetch(url);
+    // await para esperar a que se termine el fetch
+    const data = await response.json()
+    return data
+  }
+  
+  const actionList= await getData('https://yts.mx/api/v2/list_movies.json?genre=action')
+  const dramaList= await getData('https://yts.mx/api/v2/list_movies.json?genre=drama')
+  const animationList= await getData('https://yts.mx/api/v2/list_movies.json?genre=animation')
+  // let terrorList;
+  // getData('https://yts.mx/api/v2/list_movies.json?genre=terror')
+  //   .then(function(data){
+  //     console.log(data)
+  //     terrorList = data
+  //   })
+  console.log(actionList,dramaList,animationList)
+  // Codigo asincrono que se lee de una manera sincrona
+})()
+
+// load()
