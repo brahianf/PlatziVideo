@@ -97,6 +97,14 @@ fetch('https://randomuser.me/api/')
   const $modalImage = $modal.querySelector('img')
   const $modalDescription = $modal.querySelector('p')
   
+  '<div class="primaryPlaylist">' +
+            '<h3 class="primaryPlaylist-topic">Dibujitos animados</h3>' +
+            '<h2 class="primaryPlaylist-title">Animación</h2>' +
+            '<div class="primaryPlaylist-list" id="animation">' +
+              '<img src="src/images/"'+imageSRC+'width="50" height="50" alt="">' +
+            '</div>' +
+  '</div>'
+
 })()
 
 // load()
