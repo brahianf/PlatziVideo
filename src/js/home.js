@@ -79,8 +79,24 @@ fetch('https://randomuser.me/api/')
   // Codigo asincrono que se lee de una manera sincrona
 
   // Selector de clase con Jquery, $home para entender que es un elemento del DOM y no data, objetos
-  const $home=$('.home .list #item')
+  // const $home=$('.home .list #item')
 
+  const $actionContainer = document.querySelector('#action')
+  const $dramaContainer = document.getElementById('#drama')
+  const $animationContainer = document.getElementById('#animation')
+  const $featuringContainer = document.getElementById('#featuring')
+  const $form = document.getElementById('#form')
+  const $home = document.getElementById('#home')
+
+  const $modal = document.getElementById('modal')
+  const $overlay = document.getElementById('overlay')
+  const $hideModal = document.getElementById('hide-modal')
+
+  // Utilizar variable $modal ya rastreada para buscar #modal img
+  const $modalTitle = $modal.querySelector('h1')
+  const $modalImage = $modal.querySelector('img')
+  const $modalDescription = $modal.querySelector('p')
+  
 })()
 
 // load()
