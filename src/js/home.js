@@ -58,9 +58,7 @@ fetch('https://randomuser.me/api/')
 // Se envuelve la funcion para que se autoejecute load
 (async function load(){
 
-  // action
-  // terror
-  // animation
+  // action// terror // animation
   async function getData(url){
     const response = await fetch(url);
     // await para esperar a que se termine el fetch
@@ -79,6 +77,10 @@ fetch('https://randomuser.me/api/')
   //   })
   console.log(actionList,dramaList,animationList)
   // Codigo asincrono que se lee de una manera sincrona
+
+  // Selector de clase con Jquery, $home para entender que es un elemento del DOM y no data, objetos
+  const $home=$('.home .list #item')
+
 })()
 
 // load()
