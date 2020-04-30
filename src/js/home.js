@@ -69,6 +69,7 @@ fetch('https://randomuser.me/api/')
   const actionList= await getData('https://yts.mx/api/v2/list_movies.json?genre=action')
   const dramaList= await getData('https://yts.mx/api/v2/list_movies.json?genre=drama')
   const animationList= await getData('https://yts.mx/api/v2/list_movies.json?genre=animation')
+  // debugger para poder verificar los datos actionList.data.movies estarán las peliculas
   // let terrorList;
   // getData('https://yts.mx/api/v2/list_movies.json?genre=terror')
   //   .then(function(data){
@@ -97,13 +98,25 @@ fetch('https://randomuser.me/api/')
   const $modalImage = $modal.querySelector('img')
   const $modalDescription = $modal.querySelector('p')
   
-  '<div class="primaryPlaylist">' +
-            '<h3 class="primaryPlaylist-topic">Dibujitos animados</h3>' +
-            '<h2 class="primaryPlaylist-title">Animación</h2>' +
-            '<div class="primaryPlaylist-list" id="animation">' +
-              '<img src="src/images/"'+imageSRC+'width="50" height="50" alt="">' +
-            '</div>' +
-  '</div>'
+  function videoItemtemplate(movie) {
+    return (
+      `<div class="primaryPlaylist">
+            <h3 class="primaryPlaylist-topic">A los golpes</h3>
+            <h2 class="primaryPlaylist-title">${movie.title}</h2>
+            <div class="primaryPlaylist-list" id="animation">
+              <img src="${movie.medium_cover_image}" width="50" height="50" alt=""></img>
+            </div>
+      </div>`
+    )
+  }
+  // console.log(videoItemtemplate('src/images/covers/bitcoin.jpg','Bitcoin'))
+  
+  actionList.data.movies.forEach((movie) => {
+    // debugger
+    const HTMLString = videoItemtemplate(movie)
+    console.log(HTMLString)
+  });
+
 
 })()
 
