@@ -187,6 +187,44 @@ body {
 .primaryPlaylist-list {
   display: flex;
   overflow: auto;
+  grid-gap: 4px;
+}
+
+.primaryPlaylist-list img{
+  margin: 0 auto;
+  width: 120px;
+  height: 170px;
+}
+
+#action {
+  display: flex;
+  /* display: grid; 
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  text-align: center;
+  align-items: center; */
+}
+
+#drama {
+  display: flex;
+  /* display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  text-align: center;
+  align-items: center; */
+}
+
+#animation {
+  display: flex;
+  /* display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  text-align: center;
+  align-items: center; */
+}
+
+.primaryPlaylist {
+  margin: 0px 10px;
 }
 
 .primaryPlaylist-list .primaryPlaylistItem {

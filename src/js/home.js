@@ -76,15 +76,15 @@ fetch('https://randomuser.me/api/')
   //     console.log(data)
   //     terrorList = data
   //   })
-  console.log(actionList,dramaList,animationList)
+  // console.log(actionList,dramaList,animationList)
   // Codigo asincrono que se lee de una manera sincrona
 
   // Selector de clase con Jquery, $home para entender que es un elemento del DOM y no data, objetos
   // const $home=$('.home .list #item')
 
   const $actionContainer = document.querySelector('#action')
-  const $dramaContainer = document.getElementById('#drama')
-  const $animationContainer = document.getElementById('#animation')
+  const $dramaContainer = document.querySelector('#drama')
+  const $animationContainer = document.querySelector('#animation')
   const $featuringContainer = document.getElementById('#featuring')
   const $form = document.getElementById('#form')
   const $home = document.getElementById('#home')
@@ -101,20 +101,34 @@ fetch('https://randomuser.me/api/')
   function videoItemtemplate(movie) {
     return (
       `<div class="primaryPlaylist">
-            <h3 class="primaryPlaylist-topic">A los golpes</h3>
-            <h2 class="primaryPlaylist-title">${movie.title}</h2>
             <div class="primaryPlaylist-list" id="animation">
               <img src="${movie.medium_cover_image}" width="50" height="50" alt=""></img>
             </div>
+            <h2 class="primaryPlaylist-title">${movie.title}</h2>
       </div>`
     )
   }
   // console.log(videoItemtemplate('src/images/covers/bitcoin.jpg','Bitcoin'))
-  
+
   actionList.data.movies.forEach((movie) => {
+ 
+    const HTMLString = videoItemtemplate(movie)
+    // console.log(HTMLString)
+    $actionContainer.innerHTML += HTMLString
+  });
+
+  dramaList.data.movies.forEach((movie) => {
     // debugger
     const HTMLString = videoItemtemplate(movie)
-    console.log(HTMLString)
+    // console.log(HTMLString)
+    $dramaContainer.innerHTML += HTMLString;
+  });
+
+  animationList.data.movies.forEach((movie) => {
+    // debugger
+    const HTMLString = videoItemtemplate(movie)
+    // console.log(HTMLString)
+    $animationContainer.innerHTML += HTMLString;
   });
 
 
