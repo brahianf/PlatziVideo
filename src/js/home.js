@@ -84,10 +84,10 @@ fetch('https://randomuser.me/api/')
 
   const $actionContainer = document.querySelector('#action')
   const $dramaContainer = document.querySelector('#drama')
-  const $animationContainer = document.querySelector('#animation')
-  const $featuringContainer = document.getElementById('#featuring')
-  const $form = document.getElementById('#form')
-  const $home = document.getElementById('#home')
+  const $animationContainer = document.getElementById('animation')
+  const $featuringContainer = document.getElementById('featuring')
+  const $form = document.getElementById('form')
+  const $home = document.getElementById('home')
 
   const $modal = document.getElementById('modal')
   const $overlay = document.getElementById('overlay')
@@ -110,27 +110,17 @@ fetch('https://randomuser.me/api/')
   }
   // console.log(videoItemtemplate('src/images/covers/bitcoin.jpg','Bitcoin'))
 
-  actionList.data.movies.forEach((movie) => {
- 
-    const HTMLString = videoItemtemplate(movie)
-    // console.log(HTMLString)
-    $actionContainer.innerHTML += HTMLString
-  });
-
-  dramaList.data.movies.forEach((movie) => {
-    // debugger
-    const HTMLString = videoItemtemplate(movie)
-    // console.log(HTMLString)
-    $dramaContainer.innerHTML += HTMLString;
-  });
-
-  animationList.data.movies.forEach((movie) => {
-    // debugger
-    const HTMLString = videoItemtemplate(movie)
-    // console.log(HTMLString)
-    $animationContainer.innerHTML += HTMLString;
-  });
-
+  function renderMovieList(list, $container){
+    $container.children[0].remove()
+    list.forEach((movie) => {
+      const HTMLString = videoItemtemplate(movie)
+      // console.log(HTMLString)
+      $container.innerHTML += HTMLString
+    });
+  }
+  renderMovieList(actionList.data.movies, $actionContainer)
+  renderMovieList(dramaList.data.movies, $dramaContainer)
+  renderMovieList(animationList.data.movies, $animationContainer)
 
 })()
 
