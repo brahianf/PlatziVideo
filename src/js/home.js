@@ -97,25 +97,33 @@ fetch('https://randomuser.me/api/')
     event.preventDefault()
     $home.classList.add('search-active')
     // Agregar Clases en html
-    const $loader = document.createElement('img')
+    // const $loader = document.createElement('img')
+    const StringHtml = ` <div class="featuring-image">
+                            <img src="'src/images/loader.gif'" width="50  height="50">
+                         </div>`
+    $featuringContainer.innerHTML = StringHtml
     // $loader.setAttribute('src','asdads/dsa') jQuery
-    setAttributes($loader, {
-      src: 'src/images/loader.gif',
-      height: 50,
-      width: 50,
-    })
+    // setAttributes($loader, {
+    //   src: 'src/images/loader.gif',
+    //   height: 50,
+    //   width: 50,
+    // })
     // $('sdf').attr({'src':'sadas',heigth: '50px'}) Jquery
-    $featuringContainer.append($loader)
+    // $featuringContainer.append($loader)
 
     const data = new FormData($form)
-    const peli = await getData(`${BASE_API}list_movies.json?limit=1&query_term=${data.get('name')}`)
+    const {
+      data: {
+        movies: pelis
+      }
+    } = await getData(`${BASE_API}/list_movies.json?limit=1&query_term=${data.get('name')}`)
     // debugger
-    const HTMLString = featuringTemplate(peli.data.movies[0]);
+    const HTMLString = featuringTemplate(pelis[0]);
     $featuringContainer.innerHTML = HTMLString
 
   })
   
-  const actionList= await getData(`${BASE_API}list_movies.json?genre=action`)
+  const actionList= await getData(`${BASE_API}/list_movies.json?genre=action`)
   const dramaList= await getData(`${BASE_API}/list_movies.json?genre=drama`)
   const animationList= await getData(`${BASE_API}/list_movies.json?genre=animation`)
   // debugger para poder verificar los datos actionList.data.movies estarán las peliculas
