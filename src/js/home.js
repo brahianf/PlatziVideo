@@ -123,9 +123,9 @@ fetch('https://randomuser.me/api/')
 
   })
   
-  const actionList= await getData(`${BASE_API}/list_movies.json?genre=action`)
-  const dramaList= await getData(`${BASE_API}/list_movies.json?genre=drama`)
-  const animationList= await getData(`${BASE_API}/list_movies.json?genre=animation`)
+  const {data: {movies: actionList}}= await getData(`${BASE_API}/list_movies.json?genre=action`)
+  const {data: {movies: dramaList}}= await getData(`${BASE_API}/list_movies.json?genre=drama`)
+  const {data: {movies: animationList}}= await getData(`${BASE_API}/list_movies.json?genre=animation`)
   // debugger para poder verificar los datos actionList.data.movies estarán las peliculas
   // let terrorList;
   // getData('https://yts.mx/api/v2/list_movies.json?genre=terror')
@@ -139,9 +139,9 @@ fetch('https://randomuser.me/api/')
   // Selector de clase con Jquery, $home para entender que es un elemento del DOM y no data, objetos
   // const $home=$('.home .list #item')
 
-  function videoItemtemplate(movie) {
+  function videoItemtemplate(movie, category) {
     return (
-      `<div class="primaryPlaylist">
+      `<div class="primaryPlaylist" id="primaryPlaylist" data-id=${movie.id} data-category=${category}>
             <div class="primaryPlaylist-list"">
               <img src=${movie.medium_cover_image} width="50" height="50" alt=""></img>
             </div>
@@ -150,45 +150,70 @@ fetch('https://randomuser.me/api/')
     )
   }
    // Utilizar variable $modal ya rastreada para buscar #modal img
-  
-   function showModal() {
+   const $modal = document.getElementById('modal')
+   const $modalTitle = $modal.querySelector('h1')
+   const $modalImage = $modal.querySelector('img')
+   const $modalDescription = $modal.querySelector('p')
+ 
+  function findbyId(list, id){
+    // debugger
+    return list.find(movie => movie.id === parseInt(id,10));
+  }
+
+  function findMovie(id, category){
+    switch(category){
+      case 'action': {
+        return findbyId(actionList,id)
+      }
+      case 'drama' : {
+        return findbyId(dramaList,id)
+      }
+      case 'animation': {
+        return findbyId(animationList,id)
+      }
+    }
+  }
+
+   function showModal($element) {
     $overlay.classList.add('active')
     $modal.style.animation = 'modalIn .8s forwards'
+    const id = $element.dataset.id
+    const category = $element.dataset.category
+    const data = findMovie(id,category)
+    $modalTitle.textContent = data.title
+    $modalImage.setAttribute('src', data.medium_cover_image);
+    $modalDescription.textContent = data.description_full
   }
   // showModal()
    function addEventClick($element) {
     $element.addEventListener('click', () => {
       // alert('click')
-      showModal()
+      showModal($element)
     })
   }
   // console.log(videoItemtemplate('src/images/covers/bitcoin.jpg','Bitcoin'))
-  const $primaryPlaylist = document.getElementById('primaryPlaylist')
-  function renderMovieList(list, $container){
+
+  function renderMovieList(list, $container,category){
     $container.children[0].remove()
     list.forEach((movie) => {
-      const HTMLString = videoItemtemplate(movie)
+      const HTMLString = videoItemtemplate(movie,category)
       // console.log(HTMLString)
       $container.innerHTML += HTMLString
+      const $primaryPlaylist = document.getElementById('primaryPlaylist')
       addEventClick($primaryPlaylist);
     });
   }
   const $actionContainer = document.querySelector('#action')
-  renderMovieList(actionList.data.movies, $actionContainer)
+  renderMovieList(actionList, $actionContainer,'action')
  
   const $dramaContainer = document.querySelector('#drama')
-  renderMovieList(dramaList.data.movies, $dramaContainer)
+  renderMovieList(dramaList,$dramaContainer,'drama')
   
   const $animationContainer = document.getElementById('animation');
-  renderMovieList(animationList.data.movies, $animationContainer)
+  renderMovieList(animationList, $animationContainer,'animation')
 
-  const $modal = document.getElementById('modal')
   const $overlay = document.getElementById('overlay')
   const $hideModal = document.getElementById('hide-modal')
-
-  const $modalTitle = $modal.querySelector('h1')
-  const $modalImage = $modal.querySelector('img')
-  const $modalDescription = $modal.querySelector('p')
 
   $hideModal.addEventListener('click', hideModal)
   function hideModal(){
