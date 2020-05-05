@@ -123,9 +123,6 @@ fetch('https://randomuser.me/api/')
 
   })
   
-  const {data: {movies: actionList}}= await getData(`${BASE_API}/list_movies.json?genre=action`)
-  const {data: {movies: dramaList}}= await getData(`${BASE_API}/list_movies.json?genre=drama`)
-  const {data: {movies: animationList}}= await getData(`${BASE_API}/list_movies.json?genre=animation`)
   // debugger para poder verificar los datos actionList.data.movies estarán las peliculas
   // let terrorList;
   // getData('https://yts.mx/api/v2/list_movies.json?genre=terror')
@@ -200,15 +197,23 @@ fetch('https://randomuser.me/api/')
       // console.log(HTMLString)
       $container.innerHTML += HTMLString
       const $primaryPlaylist = document.getElementById('primaryPlaylist')
+      const image = $container.querySelector('img')
+      image.addEventListener('load', (event) => {
+        // $image.classList.add('fadeIn')
+        event.srcElement.classList.add('fadeIn')
+      })
       addEventClick($primaryPlaylist);
     });
   }
+  const {data: {movies: actionList}}= await getData(`${BASE_API}/list_movies.json?genre=action`)
   const $actionContainer = document.querySelector('#action')
   renderMovieList(actionList, $actionContainer,'action')
- 
+  
+  const {data: {movies: dramaList}}= await getData(`${BASE_API}/list_movies.json?genre=drama`)
   const $dramaContainer = document.querySelector('#drama')
   renderMovieList(dramaList,$dramaContainer,'drama')
-  
+
+  const {data: {movies: animationList}}= await getData(`${BASE_API}/list_movies.json?genre=animation`)
   const $animationContainer = document.getElementById('animation');
   renderMovieList(animationList, $animationContainer,'animation')
 
