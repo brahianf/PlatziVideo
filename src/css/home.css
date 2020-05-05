@@ -27,10 +27,14 @@ body {
   grid-area: featuring;
   display: grid;
   background-color: #171929;
+  justify-items: center;
+  align-items: center;
+  height: auto;
 }
 .home-featuring img {
   align-self: center;
   justify-self: center;
+  height: 100%;
 }
 
 /*Sidebar*/
@@ -42,7 +46,7 @@ body {
   color: white;
   padding: 1em;
   box-sizing: border-box;
-  height: 100vh;
+  height: 100%;
   overflow: auto;
 }
 
@@ -260,7 +264,9 @@ body {
 .featuring {
   background: linear-gradient(to right, #ff0000, #ff458b);
   display: flex;
-  height: 100%;
+  margin: 0 auto;
+  height: 90%;
+  width: 90%;
   align-items: center;
   padding-left: 100px;
   color: white;
@@ -268,6 +274,11 @@ body {
 
 .featuring-image {
   margin-right: 20px;
+  margin: 0 auto;
+  align-items: center;
+  justify-items: center;
+  display: flex;
+  height: 90%;
 }
 
 .featuring-title {

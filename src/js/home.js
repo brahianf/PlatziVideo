@@ -63,7 +63,13 @@ fetch('https://randomuser.me/api/')
     const response = await fetch(url);
     // await para esperar a que se termine el fetch
     const data = await response.json()
-    return data
+    debugger
+    if(data.data.movie_count > 0) {
+      // aquÃ­ se acaba
+      return data;
+    }
+    // si no hay pelis aquÃ­ continua
+    throw new Error('No se encontró ningún resultado');
   }
   const $form = document.getElementById('form')
   const $home = document.getElementById('home')
@@ -99,7 +105,7 @@ fetch('https://randomuser.me/api/')
     // Agregar Clases en html
     // const $loader = document.createElement('img')
     const StringHtml = ` <div class="featuring-image">
-                            <img src="'src/images/loader.gif'" width="50  height="50">
+                            <img src="src/images/loader.gif" width="110"  height="110">
                          </div>`
     $featuringContainer.innerHTML = StringHtml
     // $loader.setAttribute('src','asdads/dsa') jQuery
@@ -112,14 +118,20 @@ fetch('https://randomuser.me/api/')
     // $featuringContainer.append($loader)
 
     const data = new FormData($form)
-    const {
-      data: {
-        movies: pelis
-      }
-    } = await getData(`${BASE_API}/list_movies.json?limit=1&query_term=${data.get('name')}`)
-    // debugger
-    const HTMLString = featuringTemplate(pelis[0]);
-    $featuringContainer.innerHTML = HTMLString
+    try {
+      const {
+        data: {
+          movies: pelis
+        }
+      } = await getData(`${BASE_API}/list_movies.json?limit=1&query_term=${data.get('name')}`)
+      // debugger
+      const HTMLString = featuringTemplate(pelis[0]);
+      $featuringContainer.innerHTML = HTMLString
+    } catch(error){
+      alert(error.message)
+      // $featuringContainer.remove()
+      $home.classList.remove('search-active')
+    }
 
   })
   
