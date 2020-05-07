@@ -63,7 +63,7 @@ fetch('https://randomuser.me/api/')
     const response = await fetch(url);
     // await para esperar a que se termine el fetch
     const data = await response.json()
-    debugger
+    // debugger
     if(data.data.movie_count > 0) {
       // aquÃ­ se acaba
       return data;
@@ -129,7 +129,7 @@ fetch('https://randomuser.me/api/')
       $featuringContainer.innerHTML = HTMLString
     } catch(error){
       alert(error.message)
-      // $featuringContainer.remove()
+      $featuringContainer.innerHTML = '<span></span>'
       $home.classList.remove('search-active')
     }
 
@@ -217,15 +217,28 @@ fetch('https://randomuser.me/api/')
       addEventClick($primaryPlaylist);
     });
   }
-  const {data: {movies: actionList}}= await getData(`${BASE_API}/list_movies.json?genre=action`)
+  
+  async function cacheExist(category){
+    const listName=`${category}List`;
+    const cacheList=window.localStorage.getItem('listName')
+    if(cacheList){
+      return JSON.parse(cacheList)
+    }
+    debugger
+    const {data: {movies: data}} =  await getData(`${BASE_API}/list_movies.json?genre=${category}`)
+    window.localStorage.setItem(listName, JSON.stringify(data))
+    return data
+  }
+
+  const actionList= await cacheExist('action');
   const $actionContainer = document.querySelector('#action')
   renderMovieList(actionList, $actionContainer,'action')
   
-  const {data: {movies: dramaList}}= await getData(`${BASE_API}/list_movies.json?genre=drama`)
+  const dramaList= await cacheExist('drama');
   const $dramaContainer = document.querySelector('#drama')
   renderMovieList(dramaList,$dramaContainer,'drama')
 
-  const {data: {movies: animationList}}= await getData(`${BASE_API}/list_movies.json?genre=animation`)
+  const animationList= await cacheExist('animation');
   const $animationContainer = document.getElementById('animation');
   renderMovieList(animationList, $animationContainer,'animation')
 
