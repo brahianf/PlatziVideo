@@ -1,0 +1,71 @@
+
+/*myPlaylist*/
+
+.myPlaylist {
+    padding: 0 20px;
+  }
+  
+  .myPlaylist :any-link:hover {
+    color: color(peru l(80%) s(50%));
+    transform: scale(1.1);
+  }
+  
+  .myPlaylist-item a {
+    color: var(--lightColor);
+    text-decoration: none;
+    font-size: .8em;
+    display: block;
+    margin-bottom: 7px;
+  }
+  .myPlaylist-item:last-child a {
+    margin-bottom: 0;
+  }
+  
+  .myPlaylist-item a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Pseudoclases */
+  /* .myPlaylist-item:matches(:last-child, :nth-of-type(3), :first-child) {
+    background: color(red l(70%));
+  }
+  .myPlaylist-item:not(:last-child, :nth-of-type(3)) {
+    background: color(blue l(80%));
+  } */
+  
+  /*playlistFriends*/
+  
+  .playlistFriends {
+    padding: 0;
+  }
+  
+  .playlistFriends-item {
+    color: var(--lightColor);
+  }
+  
+  .playlistFriends-item {
+    display: flex;
+    margin-bottom: 7px;
+    font-size: .8em;
+  }
+  .playlistFriends-item a {
+    display: inline-flex;
+    align-items: center;
+    color: var(--lightColor);
+    text-decoration: none;
+  }
+  .playlistFriends-item:hover a {
+    text-decoration: underline;
+  }
+  
+  .playlistFriends-item img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .playlistFriends-item span {
+    display: inline-block;
+  }
+  

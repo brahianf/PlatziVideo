@@ -1,0 +1,27 @@
+:root {
+    --darkColor: #15192a;
+    --lightColor: white;
+    --warningColor: red;
+    --button: {
+      border: 1px solid var(--lightColor);
+      border-radius: 5px;
+      background: var(--darckColor);
+      color: var(--lightColor);
+      padding: .5em 2em;
+      margin: 0px;
+      margin-left: 20px;
+      height: min-content;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-size: 11px;
+      border-bottom: 3px solid var(--lightColor)
+    };
+    --viewportHeight: 50vh;
+  }
+  
+  .btn {
+    @apply --button;
+  }
+  .btn.warning {
+    background: var(--warningColor);
+  }

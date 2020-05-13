@@ -1,0 +1,8 @@
+body {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    @media (--small ){
+      border: 5px solid black
+    }
+  }
+  
