@@ -224,7 +224,7 @@ fetch('https://randomuser.me/api/')
     if(cacheList){
       return JSON.parse(cacheList)
     }
-    debugger
+    // debugger
     const {data: {movies: data}} =  await getData(`${BASE_API}/list_movies.json?genre=${category}`)
     window.localStorage.setItem(listName, JSON.stringify(data))
     return data

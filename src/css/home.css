@@ -1,17 +1,78 @@
 body {
   margin: 0;
   font-family: 'Lato', sans-serif;
+  @media (--small ){
+    border: 5px solid black
+  }
 }
 
+:root {
+  --darkColor: #15192a;
+  --lightColor: white;
+  --warningColor: red;
+  --button: {
+    border: 1px solid var(--lightColor);
+    border-radius: 5px;
+    background: var(--darckColor);
+    color: var(--lightColor);
+    padding: .5em 2em;
+    margin: 0px;
+    margin-left: 20px;
+    height: min-content;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 11px;
+    border-bottom: 3px solid var(--lightColor)
+  };
+  --viewportHeight: 50vh;
+}
+
+.btn {
+  @apply --button;
+}
+.btn.warning {
+  background: var(--warningColor);
+}
+
+/* @custom-selector :--nombreSelector .elemento > .hijo, .elemento2 > .hijo2; */
+@custom-selector :--checkeable .radio-label;
+@custom-selector :--hightlight :hover, :active;
+
+:--checkeable {
+  cursor: pointer;
+  user-select: none;
+  padding: 3px 7px;
+  border: 1px solid color(red b(10%));
+  border-bottom: 3px solid red;
+  color: gray(100);
+  font-size: 12px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+:--checkeable:--hightlight {
+  background: red;
+  color: white;
+}
 
 /*home layout*/
 .home {
+  /* autoprefixer: off */
   display: grid;
-  height: 100vh;
+  height: calc(var(--viewportHeight) * 2);
   grid-template-columns: 350px 1fr;
   grid-template-rows: 1fr 0;
   grid-template-areas: "sidebar primary"
                        "sidebar featuring";
+  @media (--small ){
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 150px;
+    grid-template-areas:  "primary"
+                          "sidebar"
+                          "featuring";
+  }
 }
 .home.search-active {
   grid-template-rows: 1fr 150px;
@@ -26,7 +87,7 @@ body {
 .home-featuring {
   grid-area: featuring;
   display: grid;
-  background-color: #171929;
+  background-color: var(--darkColor);
   justify-items: center;
   align-items: center;
   height: auto;
@@ -42,17 +103,24 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr 1fr;
-  background: #171929;
-  color: white;
+  background: var(--darkColor);
+  color: var(--lightColor);
   padding: 1em;
   box-sizing: border-box;
   height: 100%;
   overflow: auto;
+  /* background: color(black alpha(50%) contrast(50%)); */
+  /* background: hwb(hue, whitness, blackness); */
+  /* background: hwb(0 - 360, 0 - 100%, 0 - 100%, alpha); */
+  /* background: hwb(230, 8%, 82%,1); */
+  /* background: gray(0 - 255); */
+  /* background: gray(50); */
 }
 
 /*Logo*/
 .logo {
-
+  width: calc(100% - 100px);
+  margin: 0 auto;
 }
 .logo-image {
   margin: 0;
@@ -65,14 +133,24 @@ body {
   overflow: auto;
 }
 
+.sidebarPlaylist-title-container{
+  display: flex;
+  align-items: center;
+}
+
 /*myPlaylist*/
 
 .myPlaylist {
   padding: 0 20px;
 }
 
+.myPlaylist :any-link:hover {
+  color: color(peru l(80%) s(50%));
+  transform: scale(1.1);
+}
+
 .myPlaylist-item a {
-  color: white;
+  color: var(--lightColor);
   text-decoration: none;
   font-size: .8em;
   display: block;
@@ -82,10 +160,17 @@ body {
   margin-bottom: 0;
 }
 
-
 .myPlaylist-item a:hover {
   text-decoration: underline;
 }
+
+/* Pseudoclases */
+/* .myPlaylist-item:matches(:last-child, :nth-of-type(3), :first-child) {
+  background: color(red l(70%));
+}
+.myPlaylist-item:not(:last-child, :nth-of-type(3)) {
+  background: color(blue l(80%));
+} */
 
 /*playlistFriends*/
 
@@ -94,7 +179,7 @@ body {
 }
 
 .playlistFriends-item {
-  color: white;
+  color: var(--lightColor);
 }
 
 .playlistFriends-item {
@@ -105,7 +190,7 @@ body {
 .playlistFriends-item a {
   display: inline-flex;
   align-items: center;
-  color: white;
+  color: var(--lightColor);
   text-decoration: none;
 }
 .playlistFriends-item:hover a {
@@ -269,7 +354,14 @@ body {
   width: 90%;
   align-items: center;
   padding-left: 100px;
-  color: white;
+  color: var(--lightColor);
+  @media (--small ){
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 150px;
+  }
 }
 
 .featuring-image {
@@ -303,3 +395,9 @@ body {
     opacity: 1;
   }
 }
+
+/* @custom-media --small screen and (max-width: 768px); */
+@custom-media --extra-small (width < 480px);
+@custom-media --small screen and (width < 768px);
+@custom-media --medium screen and (width >= 768px);
+@custom-media --large screen and (width >= 1024px);

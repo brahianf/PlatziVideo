@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Platzi Video</title>
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
-  <link rel="stylesheet" href="src/css/home.css" />
+  <link rel="stylesheet" href="dist/css/home.css" />
   <link rel="stylesheet" href="src/css/modal.css" />
 </head>
 <body>
@@ -17,7 +17,10 @@
           </figure>
         </div>
         <div class="sidebarPlaylist">
-          <h2 class="sidebarPlaylist-title">Mi Playlist <span class="btn warning">Escuchar Playlist</span> </h2>
+          <span class="sidebarPlaylist-title-container">
+            <h2 class="sidebarPlaylist-title">Mis Peliculas</h2>
+            <h2 class="btn warning">ver Peliculas</h2>
+          </span>
           <ol class="myPlaylist">
             <li class="myPlaylist-item">
               <a href="#">
@@ -160,18 +163,28 @@
       <!-- <section class="primary"> -->
         <div class="primary-search">
           <form action="" class="search" id="form">
-            <input type="text" name="name" placeholder="Buscar un artista o tema favorito"/>
+            <input type="text" name="name" placeholder="Buscar película favorita"/>
           </form>
         </div>
         <div class="primary-user">
           <div class="user">
             <p>
-              <img src="src/images/covers/gorillaz.jpg" alt=""/>
-              <span>Leonidas Esteban</span>
+              <img src="src/images/covers/logo.jpg" alt=""/>
+              <span>Brahian Hurtado</span>
             </p>
           </div>
         </div>
         <div class="primary-list">
+          <p>
+            <span>
+              <label for="nombre" class="radio-label">Nombre</label>
+              <input type="radio" id="nombre" name="filtro" class="radio">
+            </span>
+            <span>
+              <label for="tipo" class="radio-label">Tipo</label>
+              <input type="radio" id="tipo" name="filtro" class="radio">
+            </span>
+          </p>
           <div class="primaryPlaylist">
             <h3 class="primaryPlaylist-topic">Peliculas</h3>
             <h2 class="primaryPlaylist-title">Acción</h2>
