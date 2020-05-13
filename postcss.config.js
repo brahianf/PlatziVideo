@@ -18,6 +18,7 @@ module.exports = {
       // require('autoprefixer')({
       //   grid: true
       // }),
+      require('postcss-import'),
       require('postcss-cssnext')({
         features: {
           autoprefixer: {
