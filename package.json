@@ -1,0 +1,27 @@
+{
+  "name": "postcss",
+  "version": "1.0.0",
+  "description": "Platzi video web site con maquetación previamente hecha.\r Se trabaja con con Vanilla JS para dar dinamismo a la página\r e implementaciones necesarias con Jquery",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brahianf/PlatziVideo.git"
+  },
+  "author": "Brahianf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brahianf/PlatziVideo/issues"
+  },
+  "homepage": "https://github.com/brahianf/PlatziVideo#readme",
+  "dependencies": {
+    "autoprefixer": "^9.7.6",
+    "postcss-cli": "^7.1.1",
+    "postcss-cssnext": "^3.1.0"
+  },
+  "devDependencies": {
+    "postcss-preset-env": "^6.7.0"
+  }
+}
