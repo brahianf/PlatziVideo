@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "postcss-font-magician": "^2.3.1",
-    "postcss-preset-env": "^6.7.0"
+    "postcss-preset-env": "^6.7.0",
+    "stylelint": "^13.3.3"
   }
 }
